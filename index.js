@@ -447,7 +447,7 @@ class SortableListView extends React.Component {
   renderActive = () => {
     if (!this.state.active) return
     const index = this.state.active.rowData.index
-    return this.renderRow(this.props.data[index], 's1', index, () => {}, {
+    return this.renderRow(this.props.data[index], 's1', index, () => { }, {
       active: true,
       thumb: true,
     })
@@ -458,9 +458,9 @@ class SortableListView extends React.Component {
   }
 
   componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      this.timer = setTimeout(() => this && this.measureWrapper(), 0)
-    })
+    // InteractionManager.runAfterInteractions(() => {
+    this.timer = setTimeout(() => this && this.measureWrapper(), 0)
+    // })
   }
 
   componentWillReceiveProps(props) {
