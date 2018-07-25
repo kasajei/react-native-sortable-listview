@@ -7,6 +7,7 @@ import {
   PanResponder,
   LayoutAnimation,
   InteractionManager,
+  Platform
 } from 'react-native'
 
 const HEIGHT = Dimensions.get('window').height
@@ -458,9 +459,14 @@ class SortableListView extends React.Component {
   }
 
   componentDidMount() {
-    // InteractionManager.runAfterInteractions(() => {
-    this.timer = setTimeout(() => this && this.measureWrapper(), 0)
-    // })
+    if (Platform.OS == "ios") {
+      this.timer = setTimeout(() => this && this.measureWrapper(), 0)
+    } else {
+      InteractionManager.runAfterInteractions(() => {
+        this.timer = setTimeout(() => this && this.measureWrapper(), 0)
+      })
+    }
+
   }
 
   componentWillReceiveProps(props) {
